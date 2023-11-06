@@ -23,8 +23,12 @@ class SecretSantaCalculator:
         for pair in pair_list:
             for person in pair:
                 self.gifters_left.append(person)
+        random.shuffle(self.gifters_left)
+
         self.gifteds_left = self.gifters_left.copy()
-        self.secret_santas = []
+        random.shuffle(self.gifteds_left)
+
+        self.secret_santas = []  # Final list of secret santas
 
     def _get_pair_of_person(self, person: str):
         """
@@ -76,6 +80,7 @@ if __name__ == "__main__":
     pair_list = []
     for pair in json_pair_list:
         pair_list.append({pair[0], pair[1]})
+    random.shuffle(pair_list)  # Shuffle list for more randomness
 
     while True:
         ssc = SecretSantaCalculator(pair_list=pair_list)
